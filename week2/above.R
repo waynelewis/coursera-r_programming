@@ -5,7 +5,7 @@ above10  <- function(x) {
     x[use]
 }
 
-above <- function(x,y) {
+above <- function(x,y=10) {
     use <- x > y
     x[use]
 }
