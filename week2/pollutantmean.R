@@ -16,9 +16,13 @@ pollutantmean <- function(directory, pollutant, id = 1:332) {
     ## in the 'id' vector (ignoring NA values)
     ## NOTE: Do not round the result!
 
-    file = paste(c(sprintf("%03d",id), ".csv"), collapse='')
-    path = paste(c(directory, "/", file), collapse='')
-    data <-read.csv(file = path, header=TRUE)
+    values = vector(mode = "numeric")
+    for (file_id in id) {
+        file = paste(c(sprintf("%03d",file_id), ".csv"), collapse='')
+        path = paste(c(directory, "/", file), collapse='')
+        data <-read.csv(file = path, header=TRUE)
+        values = append(values, data[,pollutant])
+    }
 
-    mean(data[,pollutant], na.rm=TRUE)
+    mean(values, na.rm=TRUE)
 }
