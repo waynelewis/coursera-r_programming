@@ -1,3 +1,6 @@
+# Week 2, Part 1
+# 2015-07-17
+
 complete <- function(directory, id = 1:332) {
     ## 'directory' is a character vector of length 1 indicating
     ## the location of the CSV files
@@ -14,6 +17,7 @@ complete <- function(directory, id = 1:332) {
     ## number of complete cases
 
     source("read_file.R")
+    source("find_complete_observations.R")
     
     df <- data.frame(matrix(ncol = 2, nrow = length(id)))
     colnames(df) <- c("id", "nobs")
@@ -28,11 +32,4 @@ complete <- function(directory, id = 1:332) {
     }
     df
 }
-
-find_complete_observations <- function(data) {
-    sulf_ok <- !is.na( data[,2])
-    nit_ok <- !is.na( data[,3])
-    both_ok <- sum(sulf_ok & nit_ok)
-}
-
 
