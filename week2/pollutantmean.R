@@ -16,11 +16,11 @@ pollutantmean <- function(directory, pollutant, id = 1:332) {
     ## in the 'id' vector (ignoring NA values)
     ## NOTE: Do not round the result!
 
+    source("read_file.R")
+
     values = vector(mode = "numeric")
     for (file_id in id) {
-        file = paste(c(sprintf("%03d",file_id), ".csv"), collapse='')
-        path = paste(c(directory, "/", file), collapse='')
-        data <-read.csv(file = path, header=TRUE)
+        data = read_file(file_id)
         values = append(values, data[,pollutant])
     }
 
